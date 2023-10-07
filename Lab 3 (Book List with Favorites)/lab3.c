@@ -23,7 +23,7 @@ void populateTitles(char ***titles, int *numTitles) {
 	char **titlePtr = *titles;
 	printf("\nInput the %i book titles:\n", *numTitles);
 	for (int i = 0; i < *numTitles; i++) {
-		(*titles)[i] = (char *) malloc(61 * sizeof(char));
+		*titlePtr = (char *) malloc(61 * sizeof(char));
 		printf("%i. ", i + 1);
 		scanf("%[^\n]", *(titlePtr++));
 		getchar();
@@ -84,12 +84,9 @@ void saveBooks(char ***titles, int numTitles, char ***favorites, int numFavorite
 }
 
 int main() {
+	// Populate titles using user input and output titles
 	char **titles;
 	int numTitles;
-	char **favorites;
-	int numFavorites;
-
-	// Populate titles using user input and output titles
 	populateTitles(&titles, &numTitles);
 
 	if (numTitles > 0) {
@@ -101,6 +98,8 @@ int main() {
 	}
 
 	// Populate favorites using user input and output titles
+	char **favorites;
+	int numFavorites;
 	populateFavorites(&titles, numTitles, &favorites, &numFavorites);
 
 	if (numFavorites > 0) {
